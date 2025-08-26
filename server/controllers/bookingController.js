@@ -129,6 +129,7 @@ export const stripePayment = async(req,res)=>{
         ('hotel');
         const totalPrice = booking.totalPrice;
         const { origin } = req.headers;
+        
         const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
 
         const line_items = [
