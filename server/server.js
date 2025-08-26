@@ -18,7 +18,14 @@ connectDB();
 connectCloudinary();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",              // local dev
+    "https://stayhere-khaki.vercel.app"   // deployed frontend
+  ],
+  credentials: true
+}));
+
 
 app.use(express.json());
 app.use(clerkMiddleware());
