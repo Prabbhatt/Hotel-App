@@ -68,11 +68,11 @@ export const createBooking = async (req, res) => {
         });
 
         const mailOptions = {
-            from:process.env.SENDER_EMAIL,
+            from: process.env.SENDER_EMAIL,
             to: req.user.email,
             subject: "Hotel Booking Details",
-           
-            html:`
+
+            html: `
                  <h2>Your Booking Details</h2>
                  <p>Dear ${req.user.username},</p>
                  <p>Thank you for your booking with us! Here are your
@@ -92,15 +92,18 @@ export const createBooking = async (req, res) => {
         }
 
         await transporter.sendMail(mailOptions);
+
+        console.log("Booking request body:", req.body);
+        console.log("Auth userId:", req.auth?.userId);
+        console.log("Error while creating booking:", error.message);
+
         res.json({ success: true, message: "Booking Created Successfully" });
 
 
     } catch (error) {
-        console.log(error);
-
-        res.json({ success: false, message: "Failed to create booking" });
-
-    }
+    console.error("Booking error:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
 };
 
 

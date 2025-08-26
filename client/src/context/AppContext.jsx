@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL ;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL || "https://hotel-app-backend-six.vercel.app";
 
 
 import { useNavigate } from "react-router-dom";
