@@ -9,6 +9,7 @@ import hotelRouter from './routes/hotelRoutes.js';
 import connectCloudinary from './configs/cloudinary.js';
 import roomRouter from './routes/roomRoutes.js';
 import bookingRouter from './routes/bookingRoutes.js';
+import { stripeWebhooks } from './controllers/stripeWebhooks.js';
 
 
 
@@ -26,6 +27,9 @@ app.use(cors({
   credentials: true
 }));
 
+app.post('/api/stripe',express.raw({
+  type: "application/json"
+}), stripeWebhooks);
 
 app.use(express.json());
 app.use(clerkMiddleware());
