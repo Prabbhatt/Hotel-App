@@ -1,5 +1,5 @@
 import stripe from "stripe";
-import Booking from "../models/booking";
+import Booking from "../models/booking.js";
 
 export const stripeWebhooks = async (req,res)=>{
     const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
