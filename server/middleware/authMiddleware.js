@@ -6,7 +6,8 @@ export const protect = async (req, res, next) => {
     if (!userId) {
         return res.status(401).json({ success: false, message: "Not Authorized" });
     }
-
+    console.log("Mongo Ready State:", User.db.readyState);
+    console.log("User ID:", userId);
     let user = await User.findById(userId);
 
     if (!user) {
